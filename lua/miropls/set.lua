@@ -30,6 +30,6 @@ o.isfname:append("@-@")
 
 o.updatetime = 50
 
---o.colorcolumn = "80"
+o.colorcolumn = "120"
 
 vim.g.mapleader = " "

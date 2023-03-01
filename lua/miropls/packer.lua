@@ -4,6 +4,7 @@ return require('packer').startup(function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
     use { 'catppuccin/nvim', as = 'catppuccin' }
+    use { 'folke/tokyonight.nvim', as = 'tokyonight' }
 
     use {
         'nvim-telescope/telescope.nvim', tag = '0.1.0',
@@ -11,8 +12,11 @@ return require('packer').startup(function(use)
         requires = { { 'nvim-lua/plenary.nvim' } }
     }
 
-    require('catppuccin').setup({
-        flavour = 'mocha'
+    -- require('catppuccin').setup({
+    --     flavour = 'mocha'
+    -- })
+    require('tokyonight').setup({
+        style = 'night'
     })
 
     use('tpope/vim-commentary')
@@ -21,6 +25,8 @@ return require('packer').startup(function(use)
     use('mbbill/undotree')
     use('tpope/vim-fugitive')
     use('folke/zen-mode.nvim')
+    use('sbdchd/neoformat')
+    use('windwp/nvim-ts-autotag')
     use {
         'nvim-lualine/lualine.nvim',
         requires = { 'kyazdani42/nvim-web-devicons' }
