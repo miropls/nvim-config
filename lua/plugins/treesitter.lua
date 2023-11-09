@@ -34,7 +34,11 @@ return {
 				additional_vim_regex_highlighting = false,
 			},
 		})
-		require("treesitter-context").setup({})
+		require("treesitter-context").setup({
+			enable = false,
+			line_numbers = true,
+			max_lines = 1,
+		})
 	end,
 	dependencies = {
 		"nvim-treesitter/nvim-treesitter-context",
