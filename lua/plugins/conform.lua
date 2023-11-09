@@ -1,11 +1,19 @@
 return {
 	"stevearc/conform.nvim",
+	event = { "BufReadPre", "BufNewFile" },
 	config = function()
 		require("conform").setup({
 			formatters_by_ft = {
 				lua = { "stylua" },
 				python = { "black" },
 				javascript = { { "prettierd", "prettier" } },
+				typescript = { { "prettierd", "prettier" } },
+				javascriptreact = { { "prettierd", "prettier" } },
+				typescriptreact = { { "prettierd", "prettier" } },
+				svelte = { { "prettierd", "prettier" } },
+				css = { { "prettierd", "prettier" } },
+				html = { { "prettierd", "prettier" } },
+				json = { { "prettierd", "prettier" } },
 				go = { "gofmt", "goimports" },
 				rust = { "rustfmt" },
 				yaml = { "yamlfix" },
@@ -44,4 +52,3 @@ return {
 		vim.keymap.set("n", "<leader>fo", vim.cmd.FormatToggle)
 	end,
 }
-
