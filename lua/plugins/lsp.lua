@@ -112,6 +112,7 @@ return {
 				"lua_ls",
 				"gopls",
 				"tsserver",
+				"eslint",
 				"rust_analyzer",
 				"clangd",
 				"dockerls",
