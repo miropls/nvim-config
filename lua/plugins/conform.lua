@@ -11,19 +11,21 @@ return {
 				javascriptreact = { { "prettierd", "prettier" } },
 				typescriptreact = { { "prettierd", "prettier" } },
 				svelte = { { "prettierd", "prettier" } },
+				vue = { { "prettierd", "prettier" } },
 				css = { { "prettierd", "prettier" } },
 				html = { { "prettierd", "prettier" } },
 				json = { { "prettierd", "prettier" } },
 				go = { "gofmt", "goimports" },
 				rust = { "rustfmt" },
 				yaml = { "yamlfix" },
+				sql = { "sql-formatter" },
 			},
 			format_on_save = function(bufnr)
 				-- Disable with a global or buffer-local variable
 				if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
 					return
 				end
-				return { timeout_ms = 1000, lsp_fallback = true }
+				return { timeout_ms = 3000, lsp_fallback = true }
 			end,
 		})
 

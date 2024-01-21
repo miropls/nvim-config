@@ -30,6 +30,7 @@ return {
 						{ name = "nvim_lsp" },
 						{ name = "luasnip" },
 						{ name = "buffer" },
+						require("luasnip.loaders.from_vscode").lazy_load(),
 					}),
 					window = {
 						completion = cmp.config.window.bordered(),
@@ -136,14 +137,26 @@ return {
 		})
 
 		-- Keymaps for LSP actions
+		local builtin = require("telescope.builtin")
+
+		-- Native LSP bindings
 		vim.keymap.set("n", "gh", vim.lsp.buf.hover)
-		vim.keymap.set("n", "gt", vim.lsp.buf.type_definition)
 		vim.keymap.set("n", "gl", vim.diagnostic.open_float)
-		vim.keymap.set("n", "gd", vim.lsp.buf.definition)
 		vim.keymap.set("n", "gD", vim.lsp.buf.declaration)
-		vim.keymap.set("n", "gi", vim.lsp.buf.implementation)
 		vim.keymap.set("n", "ga", vim.lsp.buf.code_action)
-		vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename)
+
+		-- Telescope builtins
+		vim.keymap.set("n", "gd", builtin.lsp_definitions, {})
+		vim.keymap.set("n", "gt", builtin.lsp_type_definitions, {})
+		vim.keymap.set("n", "gr", builtin.lsp_references, {})
+		vim.keymap.set("n", "gi", builtin.lsp_implementations, {})
+
+		-- Telescope diagnostics
+		vim.keymap.set("n", "<leader>dd", function() -- Buffer diagnostics
+			builtin.diagnostics({ bufnr = 0 })
+		end)
+		vim.keymap.set("n", "<leader>dw", builtin.diagnostics, {}) -- Workspace diagnostics
+
 		vim.keymap.set("n", "<leader>ni", "<cmd>LspInfo<CR>")
 
 		-- Auto insert parenthesis after function or method completion
