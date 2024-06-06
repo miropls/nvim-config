@@ -11,7 +11,22 @@ return {
 	},
 	config = function()
 		local builtin = require("telescope.builtin")
+		local config = require("telescope.config")
+		local vimgrep_arguments = { unpack(config.values.vimgrep_arguments) }
+
+		table.insert(vimgrep_arguments, "--hidden")
+		table.insert(vimgrep_arguments, "--glob")
+		table.insert(vimgrep_arguments, "!**/.git/*")
+
 		require("telescope").setup({
+			defaults = {
+				vimgrep_arguments = vimgrep_arguments,
+			},
+			pickers = {
+				find_files = {
+					find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
+				},
+			},
 			extensions = {
 				["ui-select"] = {
 					require("telescope.themes").get_dropdown({}),
