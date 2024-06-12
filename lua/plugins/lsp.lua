@@ -92,9 +92,8 @@ return {
     { "hrsh7th/cmp-nvim-lua" },
     {
       "windwp/nvim-autopairs",
-      config = function()
-        require("nvim-autopairs").setup({})
-      end,
+      event = "InsertEnter",
+      config = true
     },
 
     -- Snippets
@@ -121,6 +120,7 @@ return {
         "docker_compose_language_service",
         "tailwindcss",
         "vimls",
+        "intelephense"
       },
       automatic_insallation = true,
     })
