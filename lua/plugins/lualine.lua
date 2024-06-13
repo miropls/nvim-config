@@ -76,7 +76,9 @@ return {
 						"aerial",
 					},
 				},
-				lualine_x = {},
+				lualine_x = {
+					{ require("noice").api.statusline.mode.get, cond = require("noice").api.statusline.mode.has },
+				},
 				lualine_y = {
 					function()
 						return "  " .. os.date("%X")
