@@ -1,103 +1,103 @@
 return {
-  "nvim-lualine/lualine.nvim",
-  event = "VeryLazy",
-  dependencies = {
-    "nvim-tree/nvim-web-devicons",
-    lazy = true,
-  },
-  config = function()
-    local colors = require("eldritch.colors").setup()
-    local eldritch = {
-      normal = {
-        a = { bg = colors.cyan, fg = colors.black },
-        b = { bg = colors.fg_gutter, fg = colors.fg },
-        c = { bg = colors.bg_highlight, fg = colors.fg },
-      },
+	"nvim-lualine/lualine.nvim",
+	event = "VeryLazy",
+	dependencies = {
+		"nvim-tree/nvim-web-devicons",
+		lazy = true,
+	},
+	config = function()
+		local colors = require("eldritch.colors").setup()
+		local eldritch = {
+			normal = {
+				a = { bg = colors.cyan, fg = colors.black },
+				b = { bg = colors.fg_gutter, fg = colors.fg },
+				c = { bg = colors.bg_highlight, fg = colors.fg },
+			},
 
-      insert = {
-        a = { bg = colors.green, fg = colors.black },
-        b = { bg = colors.fg_gutter, fg = colors.fg },
-      },
+			insert = {
+				a = { bg = colors.green, fg = colors.black },
+				b = { bg = colors.fg_gutter, fg = colors.fg },
+			},
 
-      command = {
-        a = { bg = colors.pink, fg = colors.black },
-        b = { bg = colors.fg_gutter, fg = colors.fg },
-      },
+			command = {
+				a = { bg = colors.pink, fg = colors.black },
+				b = { bg = colors.fg_gutter, fg = colors.fg },
+			},
 
-      visual = {
-        a = { bg = colors.purple, fg = colors.black },
-        b = { bg = colors.fg_gutter, fg = colors.fg },
-      },
+			visual = {
+				a = { bg = colors.purple, fg = colors.black },
+				b = { bg = colors.fg_gutter, fg = colors.fg },
+			},
 
-      replace = {
-        a = { bg = colors.red, fg = colors.black },
-        b = { bg = colors.fg_gutter, fg = colors.fg },
-      },
+			replace = {
+				a = { bg = colors.red, fg = colors.black },
+				b = { bg = colors.fg_gutter, fg = colors.fg },
+			},
 
-      terminal = {
-        a = { bg = colors.green, fg = colors.black },
-        b = { bg = colors.fg_gutter, fg = colors.fg },
-      },
+			terminal = {
+				a = { bg = colors.green, fg = colors.black },
+				b = { bg = colors.fg_gutter, fg = colors.fg },
+			},
 
-      inactive = {
-        a = { bg = colors.bg_statusline, fg = colors.dark_cyan },
-        b = { bg = colors.bg_statusline, fg = colors.fg_gutter, gui = "bold" },
-        c = { bg = colors.bg_statusline, fg = colors.fg_gutter },
-      },
-    }
+			inactive = {
+				a = { bg = colors.bg_statusline, fg = colors.dark_cyan },
+				b = { bg = colors.bg_statusline, fg = colors.fg_gutter, gui = "bold" },
+				c = { bg = colors.bg_statusline, fg = colors.fg_gutter },
+			},
+		}
 
-
-    require('lualine').setup {
-      options = {
-        theme = eldritch,
-        component_separators = '|',
-        section_separators = { left = '', right = '' },
-      },
-      sections = {
-        lualine_a = { { 'mode', separator = { left = '' }, right_padding = 2 } },
-        lualine_b = { { "branch" },
-          { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
-          {
-            "filename",
-            symbols = { modified = "  ", readonly = "", unnamed = "" },
-          },
-        },
-        lualine_c = {
-          {
-            "diagnostics",
-            symbols = {
-              error = " ",
-              warn = " ",
-              info = " ",
-              hint = "󰝶 ",
-            },
-          },
-          {
-            "aerial"
-          },
-        },
-        lualine_x = {},
-        lualine_y = {
-          function()
-            return "  " .. os.date("%X")
-          end,
-        },
-        lualine_z = {
-          { 'location', separator = { right = '' }, left_padding = 2 },
-        },
-      },
-      inactive_sections = {
-        lualine_a = { 'filename' },
-        lualine_b = {},
-        lualine_c = {},
-        lualine_x = {},
-        lualine_y = {},
-        lualine_z = { 'location' },
-      },
-      tabline = {},
-      extensions = { "lazy", "aerial", "mason", "oil", "overseer", "toggleterm" },
-    }
-  end
+		require("lualine").setup({
+			options = {
+				theme = eldritch,
+				component_separators = "|",
+				section_separators = { left = "", right = "" },
+			},
+			sections = {
+				lualine_a = { { "mode", separator = { left = "" }, right_padding = 2 } },
+				lualine_b = {
+					{ "branch" },
+					{ "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
+					{
+						"filename",
+						symbols = { modified = "  ", readonly = "", unnamed = "" },
+					},
+				},
+				lualine_c = {
+					{
+						"diagnostics",
+						symbols = {
+							error = " ",
+							warn = " ",
+							info = " ",
+							hint = "󰝶 ",
+						},
+					},
+					{
+						"aerial",
+					},
+				},
+				lualine_x = {},
+				lualine_y = {
+					function()
+						return "  " .. os.date("%X")
+					end,
+				},
+				lualine_z = {
+					{ "location", separator = { right = "" }, left_padding = 2 },
+				},
+			},
+			inactive_sections = {
+				lualine_a = { "filename" },
+				lualine_b = {},
+				lualine_c = {},
+				lualine_x = {},
+				lualine_y = {},
+				lualine_z = { "location" },
+			},
+			tabline = {},
+			extensions = { "lazy", "aerial", "mason", "oil", "overseer", "toggleterm" },
+		})
+	end,
 }
 -- return {
 --   "nvim-lualine/lualine.nvim",
