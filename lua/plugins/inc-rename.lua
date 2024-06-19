@@ -6,5 +6,11 @@ return {
 		vim.keymap.set("n", "<leader>rn", function()
 			return ":IncRename " .. vim.fn.expand("<cword>")
 		end, { expr = true })
+
+		local wk = require("which-key")
+
+		wk.register({
+			["<leader>rn"] = { "Rename symbol" },
+		})
 	end,
 }

@@ -15,5 +15,9 @@ return {
 			require("zen-mode").toggle()
 			vim.wo.wrap = false
 		end)
+
+		require("which-key").register({
+			["<leader>zz"] = { "Zen mode" },
+		})
 	end,
 }

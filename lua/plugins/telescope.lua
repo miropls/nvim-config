@@ -43,6 +43,26 @@ return {
 		vim.keymap.set("n", "<leader>gs", builtin.git_status, {})
 		vim.keymap.set("n", "<leader>gss", builtin.git_stash, {})
 
+		local wk = require("which-key")
+
+		wk.register({
+			g = {
+				c = { "Git commits" },
+				b = { "Git branches" },
+				s = { "Git status" },
+				ss = { "Git stash" },
+			},
+			p = {
+				f = { "Grep >" },
+				p = { "Live grep" },
+			},
+			rr = { "Registers" },
+			bf = { "Buffers" },
+			f = { "Find files" },
+			of = { "Old files" },
+			gf = { "Git files" },
+		}, { prefix = "<leader>" })
+
 		require("telescope").load_extension("fzf")
 		require("telescope").load_extension("ui-select")
 		require("telescope").load_extension("aerial")

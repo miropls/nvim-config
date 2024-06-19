@@ -24,5 +24,16 @@ return {
 		vim.keymap.set("n", "<leader>i", function()
 			ui.nav_file(4)
 		end)
+
+		local wk = require("which-key")
+
+		wk.register({
+			m = { "Harpoon 1" },
+			n = { "Harpoon 2" },
+			e = { "Harpoon 3" },
+			i = { "Harpoon 4" },
+			k = { "Harpoon list" },
+			h = { "Harpoon add to list" },
+		}, { prefix = "<leader>" })
 	end,
 }

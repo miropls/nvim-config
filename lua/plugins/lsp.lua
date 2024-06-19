@@ -5,6 +5,41 @@ return {
 		"williamboman/mason.nvim",
 		"williamboman/mason-lspconfig.nvim",
 		"folke/neodev.nvim",
+		{
+			"pmizio/typescript-tools.nvim",
+			dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+			opts = {},
+			config = function()
+				require("typescript-tools").setup({
+					on_attach = function(client, bufnr)
+						vim.keymap.set({ "n", "v", "x" }, "<leader>ga", vim.lsp.buf.code_action, { buffer = bufnr })
+					end,
+					settings = {
+						tsserver_plugins = {
+							"@styled/typescript-styled-plugin",
+						},
+						jsx_close_tag = {
+							enable = true,
+							filetypes = { "javascriptreact", "typescriptreact" },
+						},
+					},
+				})
+
+				local wk = require("which-key")
+
+				wk.register({
+					ts = {
+						name = "TS Tools",
+						d = { "<cmd>TSToolsGoToSourceDefinition<CR>", "Go to source definition" },
+						o = { "<cmd>TSToolsOrganizeImports<CR>", "Organize imports" },
+						i = { "<cmd>TSToolsAddMissingImports<CR>", "Add missing imports" },
+						f = { "<cmd>TSToolsFixAll<CR>", "Fix all" },
+						n = { "<cmd>TSToolsRenameFile<CR>", "Rename file" },
+						r = { "<cmd>TSToolsFileReferences<CR>", "File references" },
+					},
+				}, { prefix = "<leader>" })
+			end,
+		},
 		-- Autocompletion
 		{
 			"hrsh7th/nvim-cmp",
@@ -112,7 +147,6 @@ return {
 			ensure_installed = {
 				"lua_ls",
 				"gopls",
-				"tsserver",
 				"eslint",
 				"rust_analyzer",
 				"clangd",
@@ -159,6 +193,28 @@ return {
 		vim.keymap.set("n", "<leader>dw", builtin.diagnostics, {}) -- Workspace diagnostics
 
 		vim.keymap.set("n", "<leader>ni", "<cmd>LspInfo<CR>")
+
+		local wk = require("which-key")
+
+		wk.register({
+			name = "LSP",
+			h = { "Hover" },
+			l = { "Error" },
+			D = { "Go to declaration" },
+			a = { "Code action" },
+			d = { "Go to definition" },
+			t = { "Go to type definition" },
+			r = { "Go to references" },
+			i = { "Go to implementations" },
+		}, { prefix = "g" })
+
+		wk.register({
+			d = {
+				name = "Diagnostics",
+				d = { "Buffer" },
+				w = { "Workspace" },
+			},
+		}, { prefix = "<leader>" })
 
 		-- Auto insert parenthesis after function or method completion
 		cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())

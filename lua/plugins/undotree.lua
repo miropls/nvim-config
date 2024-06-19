@@ -5,8 +5,11 @@ return {
 	},
 	config = function()
 		require("undotree").setup()
+
+		local wk = require("which-key")
+
+		wk.register({
+			["<leader>u"] = { "<cmd>lua require('undotree').toggle()<cr>", "Toggle Undotree" },
+		})
 	end,
-	keys = { -- load the plugin only when using it's keybinding:
-		{ "<leader>u", "<cmd>lua require('undotree').toggle()<cr>" },
-	},
 }
